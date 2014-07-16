@@ -1,6 +1,15 @@
 $(function(){
     $("#add-address").click(function(){
-      $("#new-addresses").append('<div class="new-address">' +
+      $("#new-addresses").append(
+                                   '<div class="form-group">' +
+                                   '<label for="new-number">Number</label>' +
+                                   '<input type="number" class="form-control new-number">' +
+                                   '</div>'+
+                                  '<div class="form-group">' +
+                                  '<label for"new-email">E-mail</label>' +
+                                  '<input type="text" class="form-control new-email">' +
+                                  '</div>' +
+                                  '<div class="new-address">' +
                                  '<div class="form-group">' +
                                    '<label for="new-street">Street</label>' +
                                    '<input type="text" class="form-control new-street">' +
@@ -14,6 +23,8 @@ $(function(){
                                    '<input type="text" class="form-control new-state">' +
                                  '</div>' +
                                '</div>');
+
+
     });
   $("form#new-contact").submit(function(event){
     event.preventDefault();
@@ -28,8 +39,10 @@ $(function(){
       var inputtedStreet = $(this).find("input.new-street").val();
       var inputtedCity = $(this).find("input.new-city").val();
       var inputtedState = $(this).find("input.new-state").val();
+      var inputtedNumber = $(this).find("input.new-number").val();
+      var inputtedEmail = $(this).find("input.new-email").val();
 
-      var newAddress = { street: inputtedStreet, city: inputtedCity, state: inputtedState};
+      var newAddress = { phone: inputtedNumber, email: inputtedEmail, street: inputtedStreet, city: inputtedCity, state: inputtedState};
       newContact.addresses.push(newAddress);
     });
 
@@ -46,7 +59,7 @@ $(function(){
 
       $("ul#addresses").text("");
       newContact.addresses.forEach(function(address) {
-        $("ul#addresses").append("<li>" + address.street + ", " + address.city + ", " + address.state + "</li>");
+        $("ul#addresses").append("<li>" + address.phone + ", " + address.email + ", " + address.street + ", " + address.city + ", " + address.state + "</li>");
       });
     });
 
@@ -55,5 +68,7 @@ $(function(){
     $("input.new-street").val("");
     $("input.new-city").val("");
     $("input.new-state").val("");
+    $("input.new-number").val("");
+    $("input.new-email").val("");
   });
 });
